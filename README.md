@@ -1,29 +1,47 @@
-# Report Manutenção
+# Report Manutenção CFC
 
-Página web para geração automática de relatórios de manutenção CFC.
+Sistema web desenvolvido para automatizar a geração de relatórios de manutenção a partir de planilhas Excel.
 
-## Funcionalidades
+## Objetivo
 
-- Importação de Excel
-- Filtro por turno
-- Agrupamento por linha
-- Geração de relatório para Outlook
-- Copiar assunto
-- Copiar report
+Facilitar a criação de relatórios operacionais de manutenção, reduzindo tempo de preenchimento manual e padronizando as informações enviadas por e-mail.
 
-## Turnos
+## Preview
 
-- T3 → 00:00 até 06:29
-- T1 → 06:30 até 14:59
-- T2 → 15:00 até 23:59
+### Tela Principal
 
-## Tecnologias
+![Tela Principal](report_incial.png)
 
-- HTML
-- CSS
+### Importação de Excel
+
+![Importação](report_dados.png)
+
+### Relatório Gerado
+
+![Relatório](report_email.png)
+
+## Principais Funcionalidades
+
+✅ Importação de planilhas Excel
+
+✅ Filtragem por turno
+
+✅ Geração automática de relatórios
+
+✅ Formatação para envio por e-mail
+
+✅ Interface amigável
+
+✅ Automação de processos da manutenção
+
+## Tecnologias Utilizadas
+
+- HTML5
+- CSS3
 - JavaScript
-- SheetJS (XLSX)
+- Excel
 
 ## Autor
 
 William Lopes
+``
