@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Manutenção CFC</title>
+
+<style>
+
+/* Cole aqui todo o conteúdo do style.css */
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #0c1f42,
+        #1f3763,
+        #284d8a
+    );
+    padding:20px;
+}
+/* LAYOUT */
+
+.container{
+    display:grid;
+    grid-template-columns:360px 1fr;
+    gap:18px;
+
+    align-items:start;
+
+    min-height:95vh;
+
+    width:95%;
+    margin:0 auto;
+}
+
+/* CARDS */
+
+.card{
+    background:#ffffff;
+    border-radius:20px;
+
+    padding:20px;
+
+    border-top:4px solid #2f64e3;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+}
+
+.preview{
+    align-self:start;
+}
+
+
+.card h2{
+    color:#0f2347;
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.card p{
+    color:#5d6b87;
+    margin-bottom:20px;
+}
+
+/* FORMULÁRIOS */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-weight:700;
+    color:#17335b;
+    margin-bottom:6px;
+    font-size:14px;
+    letter-spacing:.5px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #cfd6e4;
+    border-radius:14px;
+    padding:12px 15px;
+    font-size:14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border-color:#2f64e3;
+}
+
+textarea{
+    resize:none;
+    min-height:90px;
+}
+
+/* BOTÕES */
+.grupo-botoes{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-top:20px;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.btn-principal{
+    width:100%;
+    padding:16px;
+
+    background:linear-gradient(
+        90deg,
+        #2f64e3,
+        #0d47a1
+    );
+
+    color:white;
+    font-size:16px;
+    font-weight:700;
+}
+
+.btn-limpar{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#dc3545;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:700;
+
+    border:none;
+    border-radius:12px;
+}
+
+.btn-principal:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(
+        47,100,227,.35
+    );
+}
+
+.btn-secundario{
+    background:#f4f6fb;
+    border:1px solid #cfd6e4;
+    padding:8px 14px;
+    color:#17335b;
+    font-weight:600;
+}
+
+.btn-secundario:hover{
+    background:#e8edf7;
+}
+
+.btn-copiar{
+    width:100%;
+    padding:14px;
+
+    background:#198754;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:700;
+
+    border:none;
+    border-radius:12px;
+}
+
+.btn-copiar:hover{
+    background:#157347;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(25,135,84,.35);
+}
+.btn-assunto{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#7c3aed;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:700;
+
+    border:none;
+    border-radius:12px;
+}
+
+.btn-assunto:hover{
+
+    background:#6d28d9;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(124,58,237,.35);
+}
+
+/* ÁREA DE PRÉVIA */
+
+.preview-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.preview-header-right{
+    display:flex;
+    gap:10px;
+}
+
+/* E-MAIL */
+
+.email{
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #dce3f0;
+    background:white;
+}
+
+/* CABEÇALHO DO REPORT */
+
+.email-header{
+    background:linear-gradient(
+        90deg,
+        #0d47a1,
+        #163b88
+    );
+
+    padding:12px 25px;
+    border-top:4px solid #3b82f6;
+}
+
+.email-header h1{
+    color:white;
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+}
+
+.info-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.tag{
+    display:inline-block;
+
+    border:1px solid #cad3e6;
+    border-radius:25px;
+
+    padding:8px 16px;
+
+    background:#ffffff;
+
+    color:#17335b;
+
+    font-size:15px;
+    font-weight:600;
+
+    margin-right:6px;
+}
+
+/* CORPO DO EMAIL */
+
+.email-body{
+    padding:25px;
+    line-height:1.7;
+    color:#202020;
+}
+
+/* BLOCOS */
+.bloco p{
+    margin: 5px 0 2px 0;
+}
+
+.bloco ul{
+    margin: 0 0 5px 18px;
+    padding: 0;
+}
+
+.bloco{
+    margin-top:25px;
+}
+
+.bloco-titulo{
+    background:#2f64e3;
+    color:white;
+    padding:12px 18px;
+    border-left:5px solid #17335b;
+    border-radius:10px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+/* INDICADORES */
+
+.indicadores{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.indicador{
+    background:#f4f8ff;
+    border-left:5px solid #2f64e3;
+    padding:12px;
+    border-radius:10px;
+    min-width:180px;
+}
+
+.indicador strong{
+    display:block;
+    font-size:24px;
+    color:#2f64e3;
+}
+
+/* PENDÊNCIAS */
+
+.pendencias{
+    background:#fff9eb;
+    border-left:5px solid #f4b400;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* ATENÇÃO */
+
+.atencao{
+    background:#eef6ff;
+    border-left:5px solid #2f64e3;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* RESPONSIVO */
+
+@media (max-width:1200px){
+
+
+    .container{
+    display:grid;
+    grid-template-columns:330px 1fr;
+    gap:18px;
+
+    width:95%;
+    margin:0 auto;
+
+    min-height:95vh;
+}
+
+.container > .card{
+    align-self:start;
+}
+
+    .email-header h1{
+        font-size:28px;
+    }
+    .preview{
+    min-width:0;
+}
+
+.email{
+    width:100%;
+    max-width:100%;
+}
+
+}
+
+
+.topo-report{
+    width:100%;
+    margin-bottom:10px;
+}
+
+.banner-topo{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:18px;
+}
+
+.titulo-topo{
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.btn-limpar:hover{
+    background:#bb2d3b;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(220,53,69,.35);
+}
+.item-linha{
+    margin-bottom:20px;
+}
+
+.item-linha ul{
+    margin:10px 0 15px 25px;
+}
+
+.item-linha hr{
+    margin-top:20px;
+    border:none;
+    border-top:1px solid #dce3f0;
+}
+.subtitulo-report {
+
+    display: inline-block;
+
+    background: #ffffff;
+
+    color: #000000;
+
+    font-weight: 700;
+
+    font-size: 18px;
+
+    padding: 12px 16px;
+
+    margin: 10px 0 8px 0;
+
+    border-left: 4px solid #2f64e3;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.10);
+}
+#saudacao{
+    margin-bottom: 0;
+}
+
+#textoTurno{
+    margin-top: 5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="topo-report">
+    <img
+        src="banner-cfc.png"
+        class="banner-topo"
+        alt="Report Manutenção CFC">
+</header>
+
+<div class="container">
+
+    <!-- ENTRADA -->
+    <div class="card">
+
+        <h2>Entrada do Report</h2>
+
+        <div class="form-group">
+        <label>DATA</label>
+        <input type="date" id="data">
+
+</div>
+
+        <div class="form-group">
+            <label>TURNO</label>
+            <select id="turno">
+                <option>T1</option>
+                <option>T2</option>
+                <option>T3</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>ASSUNTO DO E-MAIL</label>
+            <input
+                type="text"
+                id="assunto"
+                value="Report Manutenção CFC">
+        </div>
+
+        <div class="form-group">
+            <label>OBSERVAÇÕES</label>
+            <textarea id="observacoes" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>PENDÊNCIAS</label>
+            <textarea id="pendencias" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>ARQUIVO EXCEL</label>
+            <input
+                type="file"
+                id="excel"
+                accept=".xlsx,.xls">
+        </div>
+<div class="grupo-botoes">
+
+    <button
+        class="btn-principal"
+        onclick="gerarPreview()">
+        Gerar Report
+    </button>
+
+    <button
+        class="btn-assunto"
+        onclick="copiarAssunto()">
+        Copiar Assunto
+    </button>
+
+    <button
+        class="btn-copiar"
+        onclick="copiarReport()">
+        Copiar Report
+    </button>
+
+    <button
+        class="btn-limpar"
+        onclick="limparCampos()">
+        Limpar Report
+    </button>
+
+</div>
+
+</div>
+
+    <!-- PRÉVIA -->
+    <div class="card preview">
+
+        <h2>Formato do E-mail</h2>
+
+        <div class="email">
+
+<div style="
+    border-top:4px solid #2563eb;
+    background:#f3f4f6;
+    padding:14px 20px;
+">
+
+    <div id="tituloEmail"
+    style="
+        font-size:22px;
+        font-weight:700;
+        color:#111827;
+        margin-bottom:12px;
+    ">
+        REPORT MANUTENÇÃO CFC
+    </div>
+
+    <span class="tag"
+    id="dataPreview">
+        Data:
+    </span>
+
+    <span class="tag"
+    id="turnoPreview">
+        Turno:
+    </span>
+
+</div>
+
+<div class="email-body">
+
+                <br><br>
+
+                <p id="saudacao">
+                    Boa tarde.</p>
+
+                <br>
+
+                <p id="textoTurno">
+                    Segue report das atividades de manutenção do turno.
+                </p>
+
+    <div class="bloco" id="blocoObservacoes">
+
+    <div class="bloco-titulo">
+        OBSERVAÇÕES
+    </div>
+
+    <p id="previewObservacoes"></p>
+
+</div>
+
+<div class="bloco" id="blocoPendencias">
+
+    <div class="bloco-titulo">
+        PENDÊNCIAS
+</div>
+
+    <p id="previewPendencias"></p>
+
+</div>
+
+<div class="bloco">
+
+    <div class="bloco-titulo">
+        ATENDIMENTOS REALIZADOS
+    </div>
+
+    <div id="areas"></div>
+
+</div>
+
+</div> <!-- fecha email-body -->
+
+</div> <!-- fecha email -->
+
+</div> <!-- fecha card preview -->
+
+</div> <!-- fecha container -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script>
+
+let dadosExcel = [];
+
+// CARREGAR EXCEL
+document
+    .getElementById("excel")
+    .addEventListener("change", lerExcel);
+
+function lerExcel(event) {
+
+    const arquivo = event.target.files[0];
+
+    if (!arquivo) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        const data = new Uint8Array(e.target.result);
+
+        const workbook =
+            XLSX.read(data, { type: "array" });
+
+        const nomeAba =
+            workbook.SheetNames[0];
+
+        const planilha =
+            workbook.Sheets[nomeAba];
+
+        dadosExcel =
+            XLSX.utils.sheet_to_json(planilha);
+
+        console.log("Excel carregado:");
+        console.table(dadosExcel);
+
+    };
+
+    reader.readAsArrayBuffer(arquivo);
+}
+
+// SUA FUNÇÃO GERAR PREVIEW
+function gerarPreview() {
+
+    console.log("BOTÃO CLICADO");
+
+    gerarBlocosPorLinha();
+
+    const turno =
+        document.getElementById("turno").value;
+
+        let saudacao = "";
+
+switch(turno){
+
+    case "T1":
+        saudacao = "Boa tarde.";
+        break;
+
+    case "T2":
+        saudacao = "Bom dia.";
+        break;
+
+    case "T3":
+        saudacao = "Bom dia.";
+        break;
+}
+
+document.getElementById("saudacao")
+    .innerText = saudacao;
+
+document.getElementById("textoTurno")
+    .innerText =
+    `Segue report das atividades de manutenção do ${turno}.`;
+
+    const observacoes =
+        document.getElementById("observacoes").value;
+
+    const pendencias =
+        document.getElementById("pendencias").value;
+
+    const dataInput =
+    document.getElementById("data").value;
+
+let dataFormatada = "";
+
+if (dataInput) {
+
+    const partes =
+        dataInput.split("-");
+
+    dataFormatada =
+        `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+    document.getElementById("assunto").value =
+    `Report Manutenção CFC - ${turno} - ${dataFormatada}`;
+
+    document.getElementById("tituloEmail")
+        .innerText =
+        `REPORT MANUTENÇÃO CFC`;
+
+    document.getElementById("dataPreview")
+        .innerText =
+        `Data: ${dataFormatada}`;
+
+    document.getElementById("turnoPreview")
+        .innerText =
+        `Turno: ${turno}`;
+
+    document.getElementById("previewObservacoes")
+        .innerText =
+        observacoes;
+
+    document.getElementById("previewPendencias")
+        .innerText =
+        pendencias;
+
+    // OBSERVAÇÕES
+    document.getElementById("blocoObservacoes")
+    .style.display =
+    observacoes.trim() ? "block" : "none";
+
+    // PENDÊNCIAS
+    document.getElementById("blocoPendencias")
+    .style.display =
+    pendencias.trim() ? "block" : "none";
+}
+function converterDataParaInput(dataBR) {
+
+    const partes = dataBR.split("/");
+
+    return `${partes[2]}-${partes[1]}-${partes[0]}`;
+}
+
+function gerarCabecalhoImagem(texto) {
+
+    const canvas =
+        document.createElement("canvas");
+
+    // ANTES
+    // canvas.width = 1200;
+    // canvas.height = 90;
+
+    // DEPOIS
+    canvas.width = 2200;
+    canvas.height = 120;
+
+    const ctx =
+        canvas.getContext("2d");
+
+    // Fundo azul
+    ctx.fillStyle = "#3666d6";
+
+    ctx.beginPath();
+
+    if (ctx.roundRect) {
+
+        ctx.roundRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height,
+            36
+        );
+
+    } else {
+
+        ctx.rect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+    }
+
+    ctx.fill();
+
+    // Barra escura arredondada
+    ctx.fillStyle = "#173a8b";
+
+    if (ctx.roundRect) {
+
+        ctx.beginPath();
+
+        ctx.roundRect(
+            0,
+            0,
+            18,
+            canvas.height,
+            [24, 0, 0, 24]
+        );
+
+        ctx.fill();
+
+    } else {
+
+        ctx.fillRect(
+            0,
+            0,
+            28,
+            canvas.height
+        );
+    }
+
+    // Texto
+    ctx.fillStyle = "#ffffff";
+
+    ctx.font =
+        "700 72px Segoe UI";
+
+    ctx.textBaseline = "middle";
+
+    ctx.fillText(
+        texto,
+        40,
+        canvas.height / 2
+    );
+
+    return canvas.toDataURL(
+        "image/png"
+    );
+}
+
+function gerarBlocosPorLinha() {
+
+    const container =
+        document.getElementById("areas");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const grupos = {};
+
+const turnoSelecionado =
+    document.getElementById("turno").value;
+
+const chamadosFiltrados =
+    dadosExcel.filter(item => {
+
+        const atendimento =
+            item["Atendimentos"];
+
+        if (!atendimento) return false;
+
+        const horaTexto =
+            atendimento.split(" ")[1];
+
+        if (!horaTexto) return false;
+
+        const partes =
+            horaTexto.split(":");
+
+        const hora =
+            parseInt(partes[0]);
+
+        const minuto =
+            parseInt(partes[1]);
+
+        const horario =
+            (hora * 60) + minuto;
+
+        // T1
+        if (
+            turnoSelecionado === "T1" &&
+            horario >= 390 &&
+            horario < 900
+        ) {
+            return true;
+        }
+
+        // T2
+        if (
+            turnoSelecionado === "T2" &&
+            horario >= 900
+        ) {
+            return true;
+        }
+
+        // T3
+        if (
+            turnoSelecionado === "T3" &&
+            horario < 390
+        ) {
+            return true;
+        }
+
+        return false;
+    });
+
+
+// ======================================
+// PEGA A DATA DO PRIMEIRO ATENDIMENTO
+// ======================================
+
+if (chamadosFiltrados.length > 0) {
+
+    const dataChamado =
+        chamadosFiltrados[0]["Data"]
+            .split(" ")[0];
+
+    document.getElementById("data").value =
+        converterDataParaInput(dataChamado);
+}
+
+chamadosFiltrados.forEach(item => {
+        const linha =
+            item["Linha"] || "SEM LINHA";
+
+        if (!grupos[linha]) {
+
+            grupos[linha] = {
+                processos: new Set(),
+                sintomas: new Set(),
+                comentarios: []
+            };
+        }
+
+        grupos[linha].processos.add(
+        item["Processo"] || ""
+);
+
+        grupos[linha].sintomas.add(
+        item["Sintoma"] || ""
+);
+
+        grupos[linha].comentarios.push(
+        item["Comentario Tecnico"] || ""
+        );
+
+    });
+
+    const linhasOrdenadas =
+    Object.keys(grupos).sort((a, b) => {
+
+        const numA =
+            parseInt(a.replace(/\D/g, "")) || 0;
+
+        const numB =
+            parseInt(b.replace(/\D/g, "")) || 0;
+
+        return numA - numB;
+    });
+
+for (const linha of linhasOrdenadas) {
+
+
+        let html = `
+
+            <div class="bloco">
+
+                <div class="bloco-titulo">
+                    ${linha}
+                </div>
+
+                <p class="subtitulo-report">Processo:</p>
+                <ul>
+        `;
+
+        
+[...grupos[linha].processos].forEach(item => {
+    html += `<li>${item}</li>`;
+});
+
+
+        html += `
+                </ul>
+
+                <p class="subtitulo-report">Sintomas:</p>
+
+                <ul>
+        `;
+
+        
+[...grupos[linha].sintomas].forEach(item => {
+    html += `<li>${item}</li>`;
+});
+
+
+        html += `
+                </ul>
+
+                <p class="subtitulo-report">Comentários Técnicos:</p>
+
+                <ul>
+        `;
+
+        grupos[linha].comentarios.forEach(item => {
+
+            html += `<li>${item}</li>`;
+
+        });
+
+        html += `
+
+                </ul>
+
+            </div>
+
+        `;
+
+        container.innerHTML += html;
+    }
+}
+
+function gerarAtendimentosOutlook() {
+
+    let html = "";
+
+    const turnoSelecionado =
+        document.getElementById("turno").value;
+
+    const grupos = {};
+
+    const chamadosFiltrados =
+        dadosExcel.filter(item => {
+
+            const atendimento =
+                item["Atendimentos"];
+
+            if (!atendimento) return false;
+
+            const horaTexto =
+                atendimento.split(" ")[1];
+
+            if (!horaTexto) return false;
+
+            const partes =
+                horaTexto.split(":");
+
+            const hora =
+                parseInt(partes[0]);
+
+            const minuto =
+                parseInt(partes[1]);
+
+            const horario =
+                (hora * 60) + minuto;
+
+            if (
+                turnoSelecionado === "T1" &&
+                horario >= 390 &&
+                horario <= 900
+            ) return true;
+
+            if (
+                turnoSelecionado === "T2" &&
+                horario >= 901
+            ) return true;
+
+            if (
+                turnoSelecionado === "T3" &&
+                horario < 390
+            ) return true;
+
+            return false;
+        });
+
+    chamadosFiltrados.forEach(item => {
+
+        const linha =
+            item["Linha"] || "SEM LINHA";
+
+        if (!grupos[linha]) {
+
+            grupos[linha] = {
+                processos: new Set(),
+                sintomas: new Set(),
+                comentarios: []
+            };
+        }
+
+        grupos[linha].processos.add(
+            item["Processo"] || ""
+        );
+
+        grupos[linha].sintomas.add(
+            item["Sintoma"] || ""
+        );
+
+        grupos[linha].comentarios.push(
+            item["Comentario Tecnico"] || ""
+        );
+    });
+
+    const linhasOrdenadas =
+        Object.keys(grupos).sort();
+
+    for (const linha of linhasOrdenadas) {
+
+        const imgLinha =
+            gerarCabecalhoImagem(linha);
+
+        html += `
+            <img
+                src="${imgLinha}"
+                style="
+                    width:100%;
+                    display:block;
+                    margin-top:15px;
+                    margin-bottom:10px;
+                ">
+
+            <div style="
+                display:inline-block;
+                background:#f7f7f7;
+                border-left:4px solid #3666d6;
+                padding:12px 18px;
+                border-radius:12px;
+                font-weight:bold;
+                color:#445a86;
+                margin-bottom:5px;
+            ">
+                Processo:
+            </div>
+
+            <ul>
+        `;
+
+        [...grupos[linha].processos]
+            .forEach(item => {
+
+                html += `<li>${item}</li>`;
+            });
+
+        html += `
+            </ul>
+
+            <div style="
+                display:inline-block;
+                background:#f7f7f7;
+                border-left:4px solid #3666d6;
+                padding:12px 18px;
+                border-radius:12px;
+                font-weight:bold;
+                color:#445a86;
+                margin-bottom:5px;
+            ">
+                Sintomas:
+            </div>
+
+            <ul>
+        `;
+
+        [...grupos[linha].sintomas]
+            .forEach(item => {
+
+                html += `<li>${item}</li>`;
+            });
+
+        html += `
+            </ul>
+
+            <div style="
+                display:inline-block;
+                background:#f7f7f7;
+                border-left:4px solid #3666d6;
+                padding:12px 18px;
+                border-radius:12px;
+                font-weight:bold;
+                color:#445a86;
+                margin-bottom:5px;
+            ">
+                Comentários Técnicos:
+            </div>
+
+            <ul>
+        `;
+
+        grupos[linha].comentarios
+            .forEach(item => {
+
+                html += `<li>${item}</li>`;
+            });
+
+        html += `
+            </ul>
+        `;
+    }
+
+    return html;
+}
+
+function gerarHtmlOutlook() {
+
+    const turno =
+        document.getElementById("turno").value;
+
+    const data =
+        document.getElementById("dataPreview")
+            .innerText.replace("Data: ", "");
+
+    const observacoes =
+        document.getElementById("observacoes").value;
+
+    const pendencias =
+        document.getElementById("pendencias").value;
+
+    const atendimentos =
+    gerarAtendimentosOutlook();
+
+    const imgObservacoes =
+    gerarCabecalhoImagem(
+        "OBSERVAÇÕES"
+    );
+
+const imgPendencias =
+    gerarCabecalhoImagem(
+        "PENDÊNCIAS"
+    );
+
+const imgAtendimentos =
+    gerarCabecalhoImagem(
+        "ATENDIMENTOS REALIZADOS"
+    );
+
+    return `
+
+    <div style="
+        font-family:Calibri, Arial, sans-serif;
+        font-size:14px;
+        max-width:900px;
+    ">
+
+<div style="
+    border-top:4px solid #2563eb;
+    background:#f3f4f6;
+    padding:14px 20px;
+    margin-bottom:15px;
+">
+
+    <div style="
+        font-size:22px;
+        font-weight:700;
+        color:#111827;
+        margin-bottom:12px;
+    ">
+        REPORT MANUTENÇÃO CFC
+    </div>
+
+    <span style="
+        display:inline-block;
+        padding:8px 14px;
+        border:1px solid #cbd5e1;
+        border-radius:20px;
+        background:white;
+        margin-right:6px;
+        font-size:14px;
+    ">
+        Data: ${data}
+    </span>
+
+    <span style="
+        display:inline-block;
+        padding:8px 14px;
+        border:1px solid #cbd5e1;
+        border-radius:20px;
+        background:white;
+        font-size:14px;
+    ">
+        Turno: ${turno}
+    </span>
+
+</div>
+
+
+</tr>
+</table>
+
+<p style="
+margin:10px 0;
+color:#445a86;
+font-size:16px;
+">
+Bom dia.
+</p>
+
+<p style="
+margin:15px 0 20px 0;
+color:#445a86;
+font-size:16px;
+">
+Segue report das atividades de manutenção do ${turno}.
+</p>
+
+        ${
+            observacoes.trim()
+            ? `
+<img
+src="${imgObservacoes}"
+style="
+width:100%;
+display:block;
+margin-bottom:8px;
+">
+
+            <div style="
+                border:1px solid #dcdcdc;
+                padding:10px;
+                margin-bottom:15px;
+            ">
+                ${observacoes}
+            </div>
+            `
+            : ""
+        }
+
+        ${
+            pendencias.trim()
+            ? `
+<img
+src="${imgPendencias}"
+style="
+width:100%;
+display:block;
+margin-bottom:8px;
+">
+
+            <div style="
+                border:1px solid #dcdcdc;
+                padding:10px;
+                margin-bottom:15px;
+            ">
+                ${pendencias}
+            </div>
+            `
+            : ""
+        }
+
+<img
+src="${imgAtendimentos}"
+style="
+width:100%;
+display:block;
+margin-bottom:8px;
+">
+
+        <div style="
+            border:1px solid #dcdcdc;
+            padding:12px;
+        ">
+            ${atendimentos}
+        </div>
+
+    </div>
+
+    `;
+}
+function limparCampos() {
+
+    // Formulário
+    document.getElementById("data").value = "";
+    document.getElementById("turno").selectedIndex = 0;
+    document.getElementById("assunto").value = "Report Manutenção CFC";
+    document.getElementById("observacoes").value = "";
+    document.getElementById("pendencias").value = "";
+    document.getElementById("excel").value = "";
+
+    // Prévia
+    document.getElementById("tituloEmail").innerText =
+        "REPORT MANUTENÇÃO CFC";
+
+    document.getElementById("dataPreview").innerText =
+        "Data:";
+
+    document.getElementById("turnoPreview").innerText =
+        "Turno:";
+
+    document.getElementById("previewObservacoes").innerText = "";
+
+    document.getElementById("previewPendencias").innerText = "";
+
+    // Tabela
+    document.getElementById("areas").innerHTML = "";
+
+    // Limpa memória
+    dadosExcel = [];
+
+    console.log("Report limpo");
+
+    document.getElementById("blocoObservacoes")
+    .style.display = "none";
+
+    document.getElementById("blocoPendencias")
+    .style.display = "none";
+}
+async function copiarAssunto() {
+
+    try {
+
+        const assunto =
+            document.getElementById("assunto").value;
+
+        await navigator.clipboard.writeText(
+            assunto
+        );
+
+        alert(
+            "✅ Assunto copiado!"
+        );
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        alert(
+            "Erro ao copiar assunto."
+        );
+    }
+}
+
+async function copiarReport() {
+
+    try {
+
+        const html =
+            gerarHtmlOutlook();
+
+        await navigator.clipboard.write([
+
+            new ClipboardItem({
+
+                "text/html":
+                    new Blob(
+                        [html],
+                        { type: "text/html" }
+                    )
+
+            })
+
+        ]);
+
+        alert(
+            "✅ Report copiado para Outlook!"
+        );
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        alert(
+            "Erro ao copiar report."
+        );
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,465 @@
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #0c1f42,
+        #1f3763,
+        #284d8a
+    );
+    padding:20px;
+}
+/* LAYOUT */
+
+.container{
+    display:grid;
+    grid-template-columns:360px 1fr;
+    gap:18px;
+
+    align-items:start;
+
+    min-height:95vh;
+
+    width:95%;
+    margin:0 auto;
+}
+
+/* CARDS */
+
+.card{
+    background:#ffffff;
+    border-radius:20px;
+
+    padding:20px;
+
+    border-top:4px solid #2f64e3;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+}
+
+.preview{
+    align-self:start;
+}
+
+
+.card h2{
+    color:#0f2347;
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.card p{
+    color:#5d6b87;
+    margin-bottom:20px;
+}
+
+/* FORMULÁRIOS */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-weight:700;
+    color:#17335b;
+    margin-bottom:6px;
+    font-size:14px;
+    letter-spacing:.5px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #cfd6e4;
+    border-radius:14px;
+    padding:12px 15px;
+    font-size:14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border-color:#2f64e3;
+}
+
+textarea{
+    resize:none;
+    min-height:90px;
+}
+
+/* BOTÕES */
+.grupo-botoes{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-top:20px;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.btn-principal{
+    width:100%;
+    padding:16px;
+
+    background:linear-gradient(
+        90deg,
+        #2f64e3,
+        #0d47a1
+    );
+
+    color:white;
+    font-size:16px;
+    font-weight:700;
+}
+
+.btn-limpar{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#dc3545;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:700;
+
+    border:none;
+    border-radius:12px;
+}
+
+.btn-principal:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(
+        47,100,227,.35
+    );
+}
+
+.btn-secundario{
+    background:#f4f6fb;
+    border:1px solid #cfd6e4;
+    padding:8px 14px;
+    color:#17335b;
+    font-weight:600;
+}
+
+.btn-secundario:hover{
+    background:#e8edf7;
+}
+
+.btn-copiar{
+    width:100%;
+    padding:14px;
+
+    background:#198754;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:700;
+
+    border:none;
+    border-radius:12px;
+}
+
+.btn-copiar:hover{
+    background:#157347;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(25,135,84,.35);
+}
+.btn-assunto{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#0ea5e9;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:700;
+
+    border:none;
+    border-radius:12px;
+}
+
+.btn-assunto:hover{
+
+    background:#0284c7;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(14,165,233,.35);
+}
+
+/* ÁREA DE PRÉVIA */
+
+.preview-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.preview-header-right{
+    display:flex;
+    gap:10px;
+}
+
+/* E-MAIL */
+
+.email{
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #dce3f0;
+    background:white;
+}
+
+/* CABEÇALHO DO REPORT */
+
+.email-header{
+    background:linear-gradient(
+        90deg,
+        #0d47a1,
+        #163b88
+    );
+
+    padding:12px 25px;
+    border-top:4px solid #3b82f6;
+}
+
+.email-header h1{
+    color:white;
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+}
+
+.info-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.tag{
+    display:inline-block;
+
+    border:1px solid #cad3e6;
+    border-radius:25px;
+
+    padding:8px 16px;
+
+    background:#ffffff;
+
+    color:#17335b;
+
+    font-size:15px;
+    font-weight:600;
+
+    margin-right:6px;
+}
+
+/* CORPO DO EMAIL */
+
+.email-body{
+    padding:25px;
+    line-height:1.7;
+    color:#202020;
+}
+
+/* BLOCOS */
+.bloco p{
+    margin: 5px 0 2px 0;
+}
+
+.bloco ul{
+    margin: 0 0 5px 18px;
+    padding: 0;
+}
+
+.bloco{
+    margin-top:25px;
+}
+
+.bloco-titulo{
+    background:#2f64e3;
+    color:white;
+    padding:12px 18px;
+    border-left:5px solid #17335b;
+    border-radius:10px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+/* INDICADORES */
+
+.indicadores{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.indicador{
+    background:#f4f8ff;
+    border-left:5px solid #2f64e3;
+    padding:12px;
+    border-radius:10px;
+    min-width:180px;
+}
+
+.indicador strong{
+    display:block;
+    font-size:24px;
+    color:#2f64e3;
+}
+
+/* PENDÊNCIAS */
+
+.pendencias{
+    background:#fff9eb;
+    border-left:5px solid #f4b400;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* ATENÇÃO */
+
+.atencao{
+    background:#eef6ff;
+    border-left:5px solid #2f64e3;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* RESPONSIVO */
+
+@media (max-width:1200px){
+
+
+    .container{
+    display:grid;
+    grid-template-columns:330px 1fr;
+    gap:18px;
+
+    width:95%;
+    margin:0 auto;
+
+    min-height:95vh;
+}
+
+.container > .card{
+    align-self:start;
+}
+
+    .email-header h1{
+        font-size:28px;
+    }
+    .preview{
+    min-width:0;
+}
+
+.email{
+    width:100%;
+    max-width:100%;
+}
+
+}
+
+
+.topo-report{
+    width:100%;
+    margin-bottom:10px;
+}
+
+.banner-topo{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:18px;
+}
+
+.titulo-topo{
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.btn-limpar:hover{
+    background:#bb2d3b;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(220,53,69,.35);
+}
+.item-linha{
+    margin-bottom:20px;
+}
+
+.item-linha ul{
+    margin:10px 0 15px 25px;
+}
+
+.item-linha hr{
+    margin-top:20px;
+    border:none;
+    border-top:1px solid #dce3f0;
+}
+.subtitulo-report {
+
+    display: inline-block;
+
+    background: #ffffff;
+
+    color: #000000;
+
+    font-weight: 700;
+
+    font-size: 18px;
+
+    padding: 12px 16px;
+
+    margin: 10px 0 8px 0;
+
+    border-left: 4px solid #2f64e3;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.10);
+}
+#saudacao{
+    margin-bottom: 0;
+}
+
+#textoTurno{
+    margin-top: 5px;
+}
