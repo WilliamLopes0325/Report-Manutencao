@@ -67,4 +67,3 @@ report_layout_3_colunas.png
 ## Autor
 
 William Lopes
-``
