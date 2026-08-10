@@ -49,9 +49,15 @@ Facilitar a criação de relatórios operacionais de manutenção, reduzindo tem
 - Correção da quebra de linha para nomes maiores.
 - Melhor alinhamento entre Preview e Outlook.
 
-## Preview do Report - Versão 1.1.0
+## Novo Layout dos Atendimentos (v1.1.0)
 
-![Layout v1.1.0](assets/report_layout_3_colunas.png
+Agora os atendimentos são exibidos em três colunas independentes:
+
+- Processo
+- Sintomas
+- Comentários Técnicos
+
+![Layout yout_3_colunas.png
 
 ### v1.0.0
 - Primeira versão do Report CFC.
