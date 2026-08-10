@@ -16,10 +16,6 @@ Facilitar a criação de relatórios operacionais de manutenção, reduzindo tem
 
 ![Importação](report_dados.png)
 
-### Relatório Gerado
-
-![Relatório](report_email.png)
-
 ## Principais Funcionalidades
 
 ✅ Importação de planilhas Excel
@@ -42,6 +38,16 @@ Facilitar a criação de relatórios operacionais de manutenção, reduzindo tem
 - Excel
 ## Versões
 
+### v1.0.0
+- Primeira versão do Report CFC.
+- Importação de Excel.
+- Geração automática do report.
+- Cópia para Outlook.
+
+### Relatório Gerado
+
+![Relatório](report_email.png)
+
 ### v1.1.0
 - Separação dos atendimentos em 3 colunas.
 - Processo, Sintoma e Comentário Técnico independentes.
@@ -59,12 +65,6 @@ Agora os atendimentos são exibidos em três colunas independentes:
 
 ![Versão nova](report_layout_3_colunas.png)
 
-
-### v1.0.0
-- Primeira versão do Report CFC.
-- Importação de Excel.
-- Geração automática do report.
-- Cópia para Outlook.
 ## Autor
 
 William Lopes
