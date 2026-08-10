@@ -473,6 +473,62 @@ button{
 #textoTurno{
     margin-top: 5px;
 }
+.cabecalho-linha{
+    display:grid;
+    grid-template-columns: 220px 180px 1fr;
+    gap:20px;
+    margin-bottom:15px;
+}
+
+.cabecalho-item{
+    display:flex;
+    align-items:center;
+
+    background:#fff;
+    color:#4b5f84;
+
+    font-weight:700;
+    font-size:18px;
+
+    min-height:52px;
+    padding:12px 16px;
+
+    border-left:4px solid #2f64e3;
+    border-radius:10px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.10);
+}
+
+.cabecalho-linha,
+.linha-atendimento{
+    display:grid;
+    grid-template-columns: 220px 180px 1fr;
+
+    gap:20px;
+
+    padding:20px 0;
+
+    border-bottom:1px solid #e5e7eb;
+
+    align-items:start;
+}
+
+.coluna-comentario{
+    line-height:1.8;
+    padding-bottom:15px;
+}
+
+.processo-item{
+    font-weight:500;
+}
+
+.sintoma-item{
+    font-weight:500;
+}
+
+.comentario-item{
+    line-height:1.6;
+}
 
 </style>
 
@@ -798,7 +854,7 @@ function gerarCabecalhoImagem(texto) {
 
     // DEPOIS
     canvas.width = 2200;
-    canvas.height = 120;
+    canvas.height = 90;
 
     const ctx =
         canvas.getContext("2d");
@@ -831,7 +887,7 @@ function gerarCabecalhoImagem(texto) {
     ctx.fill();
 
     // Barra escura arredondada
-    ctx.fillStyle = "#173a8b";
+    ctx.fillStyle = "#0f2d6b";
 
     if (ctx.roundRect) {
 
@@ -840,7 +896,7 @@ function gerarCabecalhoImagem(texto) {
         ctx.roundRect(
             0,
             0,
-            18,
+            30,
             canvas.height,
             [24, 0, 0, 24]
         );
@@ -857,19 +913,20 @@ function gerarCabecalhoImagem(texto) {
         );
     }
 
-    // Texto
-    ctx.fillStyle = "#ffffff";
+// Texto
+ctx.fillStyle = "#ffffff";
 
-    ctx.font =
-        "700 72px Segoe UI";
+ctx.font =
+    "700 42px Segoe UI";
 
-    ctx.textBaseline = "middle";
+ctx.textBaseline = "middle";
 
-    ctx.fillText(
-        texto,
-        40,
-        canvas.height / 2
-    );
+ctx.fillText(
+    texto,
+    60,
+    canvas.height / 2
+);
+
 
     return canvas.toDataURL(
         "image/png"
@@ -1000,60 +1057,64 @@ chamadosFiltrados.forEach(item => {
 for (const linha of linhasOrdenadas) {
 
 
-        let html = `
+let html = `
 
-            <div class="bloco">
+<div class="bloco">
 
-                <div class="bloco-titulo">
-                    ${linha}
-                </div>
+    <div class="bloco-titulo">
+        ${linha}
+    </div>
 
-                <p class="subtitulo-report">Processo:</p>
-                <ul>
-        `;
+    <div class="cabecalho-linha">
 
-        
-[...grupos[linha].processos].forEach(item => {
-    html += `<li>${item}</li>`;
-});
+        <div class="cabecalho-item">
+            Processo:
+        </div>
 
+        <div class="cabecalho-item">
+            Sintomas:
+        </div>
 
-        html += `
-                </ul>
+        <div class="cabecalho-item">
+            Comentários Técnicos:
+        </div>
 
-                <p class="subtitulo-report">Sintomas:</p>
+    </div>
+`;
+const processos =
+    [...grupos[linha].processos];
 
-                <ul>
-        `;
+const sintomas =
+    [...grupos[linha].sintomas];
 
-        
-[...grupos[linha].sintomas].forEach(item => {
-    html += `<li>${item}</li>`;
-});
+const comentarios =
+    grupos[linha].comentarios;
 
+for(let i = 0; i < processos.length; i++){
 
-        html += `
-                </ul>
+    html += `
 
-                <p class="subtitulo-report">Comentários Técnicos:</p>
+    <div class="linha-atendimento">
 
-                <ul>
-        `;
+        <div class="processo-item">
+            • ${processos[i] || ""}
+        </div>
 
-        grupos[linha].comentarios.forEach(item => {
+        <div class="sintoma-item">
+            ${sintomas[i] || ""}
+        </div>
 
-            html += `<li>${item}</li>`;
+        <div class="comentario-item">
+            ${comentarios[i] || ""}
+        </div>
 
-        });
+    </div>
+    `;
+}
 
-        html += `
-
-                </ul>
-
-            </div>
-
-        `;
-
+html += `
+</div>
+`;
         container.innerHTML += html;
     }
 }
@@ -1119,17 +1180,17 @@ function gerarAtendimentosOutlook() {
         if (!grupos[linha]) {
 
             grupos[linha] = {
-                processos: new Set(),
-                sintomas: new Set(),
+                processos: [],
+                sintomas: [],
                 comentarios: []
             };
         }
 
-        grupos[linha].processos.add(
+        grupos[linha].processos.push(
             item["Processo"] || ""
         );
 
-        grupos[linha].sintomas.add(
+        grupos[linha].sintomas.push(
             item["Sintoma"] || ""
         );
 
@@ -1143,94 +1204,156 @@ function gerarAtendimentosOutlook() {
 
     for (const linha of linhasOrdenadas) {
 
-        const imgLinha =
-            gerarCabecalhoImagem(linha);
+        const processos =
+            grupos[linha].processos;
+
+        const sintomas =
+            grupos[linha].sintomas;
+
+        const comentarios =
+            grupos[linha].comentarios;
+
+const imgLinha =
+    gerarCabecalhoImagem(linha);
+
+html += `
+
+<table
+    width="100%"
+    cellpadding="0"
+    cellspacing="0"
+    border="0"
+    style="
+        border-collapse:collapse;
+        margin-bottom:20px;
+    ">
+
+<tr>
+<td colspan="3">
+
+<img
+    src="${imgLinha}"
+    style="
+        width:100%;
+        height:auto;
+        display:block;
+        margin-bottom:10px;
+    ">
+
+</td>
+</tr>
+
+<tr>
+<td colspan="3" 
+
+<img
+    src="${imgLinha}"
+>
+<td colspan="3" height="10"></td>
+</tr>
+
+<td width="220" valign="top">
+
+<div style="
+    display:inline-block;
+    background:#f7f7f7;
+    border-left:4px solid #3666d6;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:bold;
+    color:#445a86;
+">
+    Processo:
+</div>
+
+</td>
+
+<td width="180" valign="top">
+
+<div style="
+    display:inline-block;
+    background:#f7f7f7;
+    border-left:4px solid #3666d6;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:bold;
+    color:#445a86;
+">
+    Sintomas:
+</div>
+
+</td>
+
+<td valign="top">
+
+<div style="
+    display:inline-block;
+    background:#f7f7f7;
+    border-left:4px solid #3666d6;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:bold;
+    color:#445a86;
+">
+    Comentários Técnicos:
+</div>
+
+</td>
+
+</tr>
+
+<tr>
+<td colspan="3" height="10"></td>
+</tr>
+`;
+
+        for (let i = 0; i < comentarios.length; i++) {
+
+            html += `
+
+<tr>
+
+<td style="
+    padding:16px 10px;
+    border-bottom:1px solid #dddddd;
+    vertical-align:top;
+    font-family:Calibri;
+    color:#44557a;
+    font-weight:normal;
+    white-space:nowrap;
+">
+    • ${processos[i] || ""}
+</td>
+
+<td style="
+    padding:16px 10px;
+    border-bottom:1px solid #dddddd;
+    vertical-align:top;
+    font-family:Calibri;
+    color:#44557a;
+    font-weight:normal;
+">
+    ${sintomas[i] || ""}
+</td>
+
+<td style="
+    padding:16px 10px;
+    border-bottom:1px solid #dddddd;
+    vertical-align:top;
+    font-family:Calibri;
+    color:#44557a;
+    font-weight:normal;
+">
+    ${comentarios[i] || ""}
+</td>
+
+</tr>
+`;
+        }
 
         html += `
-            <img
-                src="${imgLinha}"
-                style="
-                    width:100%;
-                    display:block;
-                    margin-top:15px;
-                    margin-bottom:10px;
-                ">
-
-            <div style="
-                display:inline-block;
-                background:#f7f7f7;
-                border-left:4px solid #3666d6;
-                padding:12px 18px;
-                border-radius:12px;
-                font-weight:bold;
-                color:#445a86;
-                margin-bottom:5px;
-            ">
-                Processo:
-            </div>
-
-            <ul>
-        `;
-
-        [...grupos[linha].processos]
-            .forEach(item => {
-
-                html += `<li>${item}</li>`;
-            });
-
-        html += `
-            </ul>
-
-            <div style="
-                display:inline-block;
-                background:#f7f7f7;
-                border-left:4px solid #3666d6;
-                padding:12px 18px;
-                border-radius:12px;
-                font-weight:bold;
-                color:#445a86;
-                margin-bottom:5px;
-            ">
-                Sintomas:
-            </div>
-
-            <ul>
-        `;
-
-        [...grupos[linha].sintomas]
-            .forEach(item => {
-
-                html += `<li>${item}</li>`;
-            });
-
-        html += `
-            </ul>
-
-            <div style="
-                display:inline-block;
-                background:#f7f7f7;
-                border-left:4px solid #3666d6;
-                padding:12px 18px;
-                border-radius:12px;
-                font-weight:bold;
-                color:#445a86;
-                margin-bottom:5px;
-            ">
-                Comentários Técnicos:
-            </div>
-
-            <ul>
-        `;
-
-        grupos[linha].comentarios
-            .forEach(item => {
-
-                html += `<li>${item}</li>`;
-            });
-
-        html += `
-            </ul>
-        `;
+</table>
+`;
     }
 
     return html;
@@ -1317,10 +1440,6 @@ const imgAtendimentos =
     </span>
 
 </div>
-
-
-</tr>
-</table>
 
 <p style="
 margin:10px 0;
