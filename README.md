@@ -57,7 +57,7 @@ Agora os atendimentos são exibidos em três colunas independentes:
 - Sintomas
 - Comentários Técnicos
 
-![Layout yout_3_colunas.png
+report_layout_3_colunas.png
 
 ### v1.0.0
 - Primeira versão do Report CFC.
