@@ -40,7 +40,20 @@ Facilitar a criação de relatórios operacionais de manutenção, reduzindo tem
 - CSS3
 - JavaScript
 - Excel
+## Versões
 
+### v1.1.0
+- Separação dos atendimentos em 3 colunas.
+- Processo, Sintoma e Comentário Técnico independentes.
+- Ajuste da largura da coluna Processo.
+- Correção da quebra de linha para nomes maiores.
+- Melhor alinhamento entre Preview e Outlook.
+
+### v1.0.0
+- Primeira versão do Report CFC.
+- Importação de Excel.
+- Geração automática do report.
+- Cópia para Outlook.
 ## Autor
 
 William Lopes
