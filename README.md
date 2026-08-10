@@ -51,7 +51,7 @@ Facilitar a criação de relatórios operacionais de manutenção, reduzindo tem
 
 ## Preview do Report - Versão 1.1.0
 
-![Layout 3ort_v1.1.0.png
+![Layout v1.1.0](assets/report_layout_3_colunas.png
 
 ### v1.0.0
 - Primeira versão do Report CFC.
