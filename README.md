@@ -49,6 +49,10 @@ Facilitar a criação de relatórios operacionais de manutenção, reduzindo tem
 - Correção da quebra de linha para nomes maiores.
 - Melhor alinhamento entre Preview e Outlook.
 
+## Preview do Report - Versão 1.1.0
+
+![Layout 3ort_v1.1.0.png
+
 ### v1.0.0
 - Primeira versão do Report CFC.
 - Importação de Excel.
