@@ -68,3 +68,7 @@ Agora os atendimentos são exibidos em três colunas independentes:
 ## Autor
 
 William Lopes
+
+🎓 Estudante de Engenharia de Software
+
+🔧 Técnico de Manutenção Industrial e Tecnologia.
